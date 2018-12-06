@@ -1,0 +1,41 @@
+<%
+  # Smile specific #113099 Possibilité de cacher par défaut des valeurs de champ personnalisés
+  # - hidden_values
+  # - hidden_values_projects_exclusions
+-%>
+<p>
+  <%= f.text_area :possible_values, :value => @custom_field.possible_values.to_a.join("\n"), :rows => 15 %>
+  <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
+</p>
+<p><%= f.text_field(:default_value) %></p>
+<p><%= f.text_field :url_pattern, :size => 50, :label => :label_link_values_to %></p>
+<p><%= edit_tag_style_tag f %></p>
+<%
+    ############################################################################################
+    # Smile specific #113099 Possibilité de cacher par défaut des valeurs de champ personnalisés
+    # 1/  Smile specific : hidden_values
+    if (
+      @custom_field.class.instance_methods.include?(:possible_values_unfiltered) &&
+      @custom_field.class.instance_methods.include?(:hidden_values)
+    )
+-%>
+<p>
+  <%= f.text_area :hidden_values, :value => @custom_field.hidden_values.to_a.join("\n"), :rows => 15 %>
+  <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
+</p>
+<%  end -%>
+<%
+    # 2/ Smile specific : hidden_values_projects_exclusions
+    if (
+      @custom_field.class.instance_methods.include?(:possible_values_unfiltered) &&
+      @custom_field.class.instance_methods.include?(:hidden_values_projects_exclusions)
+    )
+-%>
+<p>
+  <%= f.text_area :hidden_values_projects_exclusions, :value => @custom_field.hidden_values_projects_exclusions.to_a.join("\n"), :rows => 15 %>
+  <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
+</p>
+<%   end
+    # END -- Smile specific #113099 Possibilité de cacher par défaut des valeurs de champ personnalisés
+    ###################################################################################################
+-%>

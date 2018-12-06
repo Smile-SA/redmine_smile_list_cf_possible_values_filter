@@ -1,0 +1,7 @@
+# English translations for List CF Possible Values Filter Plugin
+# by Jérôme BATAILLE (redmine-support@smile.fr)
+
+en-GB:
+  #acts-as-customizable-filter
+  field_hidden_values: Hidden values
+  field_hidden_values_projects_exclusions: Projects (their identifiers) displaying hidden values

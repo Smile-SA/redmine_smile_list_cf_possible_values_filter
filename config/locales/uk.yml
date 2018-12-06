@@ -1,0 +1,7 @@
+# Ukrainian translations for List CF Possible Values Filter Plugin
+# by Jérôme BATAILLE (redmine-support@smile.fr)
+
+uk:
+  #acts-as-customizable-filter
+  field_hidden_values: приховані значення
+  field_hidden_values_projects_exclusions: Проекти (їх ідентифікатори) відображення прихованих значень
