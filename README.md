@@ -11,7 +11,7 @@ It adds two fields to the Custom Fields (of type List) Configuration :
 
 ![alt text](https://github.com/Smile-SA/redmine_smile_list_cf_possible_values_filter/blob/master/documentation/list_custom_field_configuration_EN.png "Exemple Custom Field Configuration")
 
-The values in **Hidden values** will be hidden by default, except for the projects in *Projects (their identifiers) displaying hidden values*
+The values in **Hidden values** will be hidden by default, except for the projects in **Projects (their identifiers) displaying hidden values**
 
 * Tested with Redmine V4.0.0
 
