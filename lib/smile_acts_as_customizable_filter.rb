@@ -24,7 +24,7 @@ module Smile
               :acts_as_customizable # 1/ OVERRIDEN RM 4.0.0 OK
             ]
 
-            already_overriden_methods = base.methods.select{|m| m == acts_customizable_filter_class_methods[0]}
+            already_overriden_methods = base.methods.select{|m| m == acts_customizable_filter_class_methods[0] && base.method(m).owner == ClassMethods}
             if already_overriden_methods.any?
               method_owner = base.method(acts_customizable_filter_class_methods[0]).owner.name
               SmileTools.trace_override "#{base.name}   ALREADY overriden  < owner: #{method_owner} (SM::RMOverride::ActsOverride::CustomizableOverride::FilterPossibleValues::CMeths)",
