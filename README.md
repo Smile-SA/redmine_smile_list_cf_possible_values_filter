@@ -21,7 +21,7 @@ It adds two fields to the Custom Fields (of type List) Configuration :
 
 * Tested with Redmine V4.0.0
 
-```
+---
 
 Enjoy !
 
