@@ -24,3 +24,5 @@ It adds two fields to the Custom Fields (of type List) Configuration :
 ```
 
 Enjoy !
+
+<kbd>![alt text](https://compteur-visites.ennder.fr/sites/34/token/githublcfpv/image "Logo") <!-- .element height="10%" width="10%" --></kbd>
