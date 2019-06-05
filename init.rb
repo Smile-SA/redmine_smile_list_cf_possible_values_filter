@@ -56,7 +56,7 @@ require plugin_root + '/lib/smile_acts_as_customizable_filter'
 
 # Do NOT put it later, in the Dispatcher.to_prepare, WILL NOT be executed for all subclasses
 unless ActiveRecord::Base.include? Smile::RedmineOverride::ActsOverride::CustomizableOverride::FilterPossibleValues
-#  Rails.logger.info "o=>ActiveRecord::Base.include Smile::RedmineOverride::ActsOverride::CustomizableOverride::FilterPossibleValues"
+#  Rails.logger.info "o=>ActiveRecord::Base.prepend Smile::RedmineOverride::ActsOverride::CustomizableOverride::FilterPossibleValues"
   ActiveRecord::Base.send(:prepend, Smile::RedmineOverride::ActsOverride::CustomizableOverride::FilterPossibleValues)
 end
 
@@ -165,27 +165,27 @@ rails_dispatcher.to_prepare do
   # **** 6.3/ Models ****
   Rails.logger.info "o=>----- MODELS"
   unless Project.include? Smile::Models::ProjectOverride::FilterPossibleValues
-    # Rails.logger.info "o=>Project.include Smile::Models::ProjectOverride::FilterPossibleValues"
+    # Rails.logger.info "o=>Project.prepend Smile::Models::ProjectOverride::FilterPossibleValues"
     Project.send(:prepend, Smile::Models::ProjectOverride::FilterPossibleValues)
   end
 
   unless CustomField.include? Smile::Models::CustomFieldOverride::FilterPossibleValues
-    # Rails.logger.info "o=>CustomField.include Smile::Models::CustomFieldOverride::FilterPossibleValues"
+    # Rails.logger.info "o=>CustomField.prepend Smile::Models::CustomFieldOverride::FilterPossibleValues"
     CustomField.send(:prepend, Smile::Models::CustomFieldOverride::FilterPossibleValues)
   end
 
   unless VersionCustomField.include? Smile::Models::VersionCustomFieldOverride::FilterPossibleValues
-    # Rails.logger.info "o=>VersionCustomField.include Smile::Models::VersionCustomFieldOverride::FilterPossibleValues"
+    # Rails.logger.info "o=>VersionCustomField.prepend Smile::Models::VersionCustomFieldOverride::FilterPossibleValues"
     VersionCustomField.send(:prepend, Smile::Models::VersionCustomFieldOverride::FilterPossibleValues)
   end
 
   unless IssueCustomField.include? Smile::Models::IssueCustomFieldOverride::FilterPossibleValues
-    # Rails.logger.info "o=>IssueCustomField.include Smile::Models::IssueCustomFieldOverride::FilterPossibleValues"
+    # Rails.logger.info "o=>IssueCustomField.prepend Smile::Models::IssueCustomFieldOverride::FilterPossibleValues"
     IssueCustomField.send(:prepend, Smile::Models::IssueCustomFieldOverride::FilterPossibleValues)
   end
 
   unless TimeEntryCustomField.include? Smile::Models::TimeEntryCustomFieldOverride::FilterPossibleValues
-    # Rails.logger.info "o=>TimeEntryCustomField.include Smile::Models::TimeEntryCustomFieldOverride::FilterPossibleValues"
+    # Rails.logger.info "o=>TimeEntryCustomField.prepend Smile::Models::TimeEntryCustomFieldOverride::FilterPossibleValues"
     TimeEntryCustomField.send(:prepend, Smile::Models::TimeEntryCustomFieldOverride::FilterPossibleValues)
   end
 
