@@ -62,7 +62,7 @@ module Smile
         def ancestors_identifiers
           return @ancestors_identifiers if defined?(@ancestors_identifiers)
 
-          @ancestors_identifiers = ancestors.collect(&:identifier)
+          @ancestors_identifiers = ancestors.pluck(:identifier)
         end
       end # module FilterPossibleValues
     end # module ProjectOverride
