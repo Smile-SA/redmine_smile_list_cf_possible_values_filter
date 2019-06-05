@@ -21,7 +21,7 @@ module Smile
         module FilterPossibleValues
           def self.prepended(base)
             acts_customizable_filter_class_methods = [
-              :acts_as_customizable # 1/ OVERRIDEN RM 4.0.0 OK
+              :acts_as_customizable # 1/ EXTENDED RM 4.0.0 OK
             ]
 
             already_overriden_methods = base.methods.select{|m| m == acts_customizable_filter_class_methods[0] && base.method(m).owner == ClassMethods}
@@ -51,7 +51,7 @@ module Smile
 
 
           module ClassMethods
-            # 1/ OVERRIDEN extended, RM 4.0.0 OK
+            # 1/ EXTENDED, RM 4.0.0 OK
             def acts_as_customizable(options = {})
               super(options)
 
@@ -61,8 +61,8 @@ module Smile
 
 
               acts_customizable_filter_instance_methods = [
-                :custom_values,                       # 1/ OVERRIDEN extended  RM 4.0.0 OK
-                :custom_field_values,                 # 2/ OVERRIDEN rewritten RM 4.0.0 OK
+                :custom_values,                       # 1/ EXTENDED  RM 4.0.0 OK
+                :custom_field_values,                 # 2/ REWRITTEN RM 4.0.0 OK
                 # Private
                 :filter_custom_value_possible_values, # 3/ new method
               ]
@@ -126,7 +126,7 @@ module Smile
           end # module ClassMethods
 
           module InstanceMethods
-            # 1/ OVERRIDEN extended, override to filter custom values afterwards
+            # 1/ EXTENDED, override to filter custom values afterwards
             #    RM 4.0.0 OK
             # *** ENTRY POINT #1 ***
             # Method dynamically added to ActiveRecord::Base by acts_as_customizable
@@ -150,7 +150,7 @@ module Smile
               @custom_values
             end
 
-            # 2/ OVERRIDEN rewritten, RM 4.0.0 OK
+            # 2/ REWRITTEN, RM 4.0.0 OK
             # Calls custom_values (the entry point)
             # Reuse the same instance variable, because already cached in original version
             # Smile specific : put the custom_value custom_field in the custom_field_value
