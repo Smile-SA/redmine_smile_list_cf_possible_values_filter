@@ -21,6 +21,8 @@ It adds two fields to the Custom Fields (of type List) Configuration :
 
 * Tested with Redmine V4.0.0
 
-```
+---
 
 Enjoy !
+
+<kbd>![alt text](https://compteur-visites.ennder.fr/sites/34/token/githublcfpv/image "Logo")</kbd>
