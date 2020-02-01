@@ -15,8 +15,15 @@ module Smile
 
         def self.prepended(base)
           filter_possible_values_instance_methods = [
-            :possible_values_unfiltered, # 1/ new method
+            :possible_values_unfiltered,             # 1/ new method RM V4.0.0 OK
           ]
+
+          if defined?(Localizable)
+            filter_possible_values_instance_methods += [
+              :possible_values_localized_unfiltered, # 2/ new method RM V4.0.0 OK
+              :localize_value_if_list_type,          # 3/ REWRITTEN  RM V4.0.0 OK
+            ]
+          end
 
           trace_prefix       = "#{' ' * (base.name.length + 21)}  --->  "
           last_postfix       = '< (SM::MO::CustomFieldOverride::FilterPossibleValues)'
@@ -76,10 +83,10 @@ module Smile
           )
         end
 
-        # 1/ new method, RM 2.3.2 OK
+        # 1/ new method  RM V4.0.0 OK
         # cache values
         def possible_values_unfiltered
-          # Enable cache if provided by plugin
+          # This call enables the cache if provided by plugin
           possible_values_uncached = possible_values
           if defined?(@possible_values_unfiltered)
             return @possible_values_unfiltered
@@ -87,6 +94,58 @@ module Smile
             return possible_values_uncached
           end
         end
+
+        # Localizable plugin installed ?
+        if defined?(Localizable)
+          # 2/ new method  RM V4.0.0 OK
+          def possible_values_localized_unfiltered
+            return @possible_values_localized_unfiltered if defined?(@possible_values_localized_unfiltered)
+
+            @possible_values_localized_unfiltered = get_possible_values_localized(possible_values_unfiltered)
+          end
+
+          # 3/ REWRITTEN  RM V4.0.0 OK
+          # From Localizable plugin
+          #
+          # Localize a value of type list (with localized possible_values)
+          def localize_value_if_list_type(p_value)
+            return p_value unless to_localize_because_list_type?
+
+            # Multiple values case
+            if p_value.is_a?(Array)
+              # Duplicated to not affect over uses of custom_values
+              value_localized = []
+              p_value.each{|v|
+                # Recursive call
+                value_localized << localize_value_if_list_type(v)
+              }
+
+              return value_localized
+            end
+
+            ####################
+            # Specific to plugin : possible_values -> possible_values_unfiltered
+            possible_values_unfiltered.each_with_index{ |pv, i|
+              if p_value == pv
+                # possible_values_localized is cached
+                ####################
+                # Specific to plugin : possible_values_localized -> possible_values_localized_unfiltered
+                value_localized = possible_values_localized_unfiltered[i]
+
+                # Value changed ?
+                # If NOT return the original value
+                if value_localized != p_value
+                  # logger.debug "==>cf localize_value_if_list_type #{p_value} --> #{value_localized}"
+                  p_value = value_localized
+                end
+
+                break
+              end
+            }
+
+            p_value
+          end # def localize_value_if_list_type(p_value)
+        end # if respond_to?(:possible_values_localized)
       end # module FilterPossibleValues
     end # module CustomFieldOverride
   end # module Models

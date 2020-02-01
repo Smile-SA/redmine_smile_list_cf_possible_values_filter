@@ -18,9 +18,15 @@
       @custom_field.class.instance_methods.include?(:possible_values_unfiltered) &&
       @custom_field.class.instance_methods.include?(:hidden_values)
     )
+      hidden_values_arr = @custom_field.hidden_values
+      if hidden_values_arr.is_a?(String)
+        hidden_values_arr = hidden_values_arr.split("\n") 
+      else
+        hidden_values_arr = hidden_values_arr.to_a
+      end
 -%>
 <p>
-  <%= f.text_area :hidden_values, :value => @custom_field.hidden_values.to_a.join("\n"), :rows => 15 %>
+  <%= f.text_area :hidden_values, :value => hidden_values_arr.join("\n"), :rows => 15 %>
   <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
 </p>
 <%  end -%>
@@ -30,9 +36,15 @@
       @custom_field.class.instance_methods.include?(:possible_values_unfiltered) &&
       @custom_field.class.instance_methods.include?(:hidden_values_projects_exclusions)
     )
+      hidden_values_projects_exclusions_arr = @custom_field.hidden_values_projects_exclusions
+      if hidden_values_projects_exclusions_arr.is_a?(String)
+        hidden_values_projects_exclusions_arr = hidden_values_projects_exclusions_arr.split("\n") 
+      else
+        hidden_values_projects_exclusions_arr = hidden_values_projects_exclusions_arr.to_a
+      end
 -%>
 <p>
-  <%= f.text_area :hidden_values_projects_exclusions, :value => @custom_field.hidden_values_projects_exclusions.to_a.join("\n"), :rows => 15 %>
+  <%= f.text_area :hidden_values_projects_exclusions, :value => hidden_values_projects_exclusions_arr.join("\n"), :rows => 15 %>
   <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
 </p>
 <%   end

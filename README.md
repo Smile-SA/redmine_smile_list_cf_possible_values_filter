@@ -25,4 +25,10 @@ It adds two fields to the Custom Fields (of type List) Configuration :
 
 Enjoy !
 
+
+# Changelog
+
+* **V1.0.1** Manages **Localizable** translations if plugin is installed
+
+
 <kbd>![alt text](https://compteur-visites.ennder.fr/sites/34/token/githublcfpv/image "Logo")</kbd>

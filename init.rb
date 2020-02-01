@@ -21,7 +21,7 @@ Redmine::Plugin.register plugin_name do
   author_url "mailto:Jerome BATAILLE <redmine-support@smile.fr>?subject=#{plugin_name}"
   description 'Adds hability to filter possibles values of Custom Fields of type list, with project exceptions'
   url "https://github.com/Smile-SA/#{plugin_name}"
-  version '1.0.0'
+  version '1.0.1'
   requires_redmine :version_or_higher => '2.6.1'
 
   requires_redmine_plugin :redmine_smile_base, :version_or_higher => '1.0.0'
