@@ -5,6 +5,8 @@ Redmine plugin that adds the hability to filter possible values of Custom Fields
 Some project exceptions can be added.
 Filter also possible_values_localized if method provided by **Localizable Plugin**
 
+* The filtering and translation of possible values works for **multiple values** Custom Fields
+
 ## How it works
 
 It adds two fields to the Custom Fields (of type List) Configuration :
